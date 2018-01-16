@@ -40,8 +40,16 @@ public class ImageAdapter extends RecyclerView.Adapter <ImageAdapter.ViewHolder>
     }
 
     @Override
-    public void onBindViewHolder(ImageAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(ImageAdapter.ViewHolder holder, final int position) {
         Glide.with(mContext).load(mAddress[position]).into(holder.imageView);
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext,ImagePreviewActivity.class);
+                intent.putExtra("ImageUrl",mAddress[position]);
+                mContext.startActivity(intent);
+            }
+        });
 
     }
 
