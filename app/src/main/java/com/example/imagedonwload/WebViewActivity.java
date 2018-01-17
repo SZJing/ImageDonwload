@@ -20,7 +20,7 @@ public class WebViewActivity extends AppCompatActivity {
         wbload = (Button) findViewById(R.id.webview_load);
         wzText = (EditText) findViewById(R.id.wangzhi);
         if (wangzhi == null){
-            wzText.setText("https://m.baidu.com");
+            wzText.setText("http://m.baidu.com");
         }
         wbload.setOnClickListener(new View.OnClickListener() {
             @Override

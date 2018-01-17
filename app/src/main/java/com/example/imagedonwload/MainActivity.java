@@ -8,11 +8,15 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.addJavascriptInterface(new JsInterface(MainActivity.this), "imagelistner");
         webView.setWebViewClient(new MyWebViewClient());
+        webView.getSettings().setBlockNetworkImage(false);
         webView.loadUrl(Address);
     }
 
@@ -77,11 +82,10 @@ public class MainActivity extends AppCompatActivity {
             view.getSettings().setJavaScriptEnabled(true);
             super.onPageFinished(view, url);
             Log.i("chen", "加载完成-----" + url);
-            view.getSettings().setBlockNetworkImage(false);
             addLocalJs();
-
         }
     }
+
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
